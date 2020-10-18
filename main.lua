@@ -60,6 +60,8 @@ function Addon.AddPoints(button, value)
         name_x_points_map[name] = extra_ep
     end
 
+    Addon.IgnoreUpdates()
+
 	for i = 1, GetNumGuildMembers() do
 		local name, _, _, _, _, _, _, officerNote = GetGuildRosterInfo(i)
 		name = Addon:CleanName(name)
@@ -72,6 +74,8 @@ function Addon.AddPoints(button, value)
             name_x_points_map[name] = nil
 		end
     end
+
+    Addon.StopIgnoreUpdates()
 
     for name, _ in pairs(name_x_points_map) do
         Addon:Print('Игрок ' .. name .. ' не найден в гильде')
@@ -94,16 +98,16 @@ function MainFrame:SetEPGP(index, EP, GP)
     GuildRosterSetOfficerNote(index, EP .. "," .. GP)
 end
 
-function MainFrame:IgnoreUpdates()
-    self:SendCEPGPAddonMsg('?IgnoreUpdates;true');
+function Addon.IgnoreUpdates()
+    Addon.SendCEPGPAddonMsg('?IgnoreUpdates;true');
 end
 
-function MainFrame:StopIgnoreUpdates()
-    self:SendCEPGPAddonMsg('?IgnoreUpdates;false');
+function Addon.StopIgnoreUpdates()
+    Addon.SendCEPGPAddonMsg('?IgnoreUpdates;false');
 end
 
 
-function MainFrame:SendCEPGPAddonMsg(msg)
+function Addon.SendCEPGPAddonMsg(msg)
 	local prefix = 'CEPGP'
     C_ChatInfo.SendAddonMessage(prefix, msg, 'GUILD')
 end
