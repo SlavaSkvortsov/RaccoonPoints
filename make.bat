@@ -1,0 +1,1 @@
+xcopy /s /y "c:\RaccoonPoints" "C:\Program Files (x86)\World of Warcraft\_classic_\Interface\AddOns\RaccoonPoints"

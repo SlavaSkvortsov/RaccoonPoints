@@ -1,0 +1,8 @@
+<Ui>
+	<Include file="libs\libs.xml"/>
+
+	<Script file="utils.lua"/>
+
+	<Script file="icon.lua"/>
+	<Script file="main.lua"/>
+</Ui>
